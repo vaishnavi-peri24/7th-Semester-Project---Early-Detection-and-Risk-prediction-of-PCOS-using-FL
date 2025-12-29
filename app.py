@@ -300,7 +300,7 @@ elif page == "ℹ️ About Project":
     **Technologies Used:**  
     - Machine Learning (KNN, LR, RF, XGBoost)  
     - Genetic Algorithm + Hill Climbing  
-    - Federated Learning (FedAvg – conceptual)  
+    - Federated Learning (FedAvg(Number of stimulated clients - 3))  
     - Explainable AI (LIME & SHAP)  
     - Streamlit Deployment  
 
