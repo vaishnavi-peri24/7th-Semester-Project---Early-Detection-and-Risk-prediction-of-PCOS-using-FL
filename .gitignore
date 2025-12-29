@@ -1,0 +1,35 @@
+# Virtual environment
+pcos_env/
+venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Temporary files
+*.tmp
+*.log
+
+# Model artifacts (uncomment if you want to exclude these)
+# artifacts/
+# *.pkl
+
+# Data files (uncomment if you want to exclude these)
+# *.csv
