@@ -188,8 +188,6 @@ elif page == "📊 PCOS Risk Prediction":
 
     st.title("📊 PCOS Risk Prediction")
 
-    st.markdown('<div class="card">', unsafe_allow_html=True)
-
     col1, col2, col3 = st.columns(3)
 
     with col1:
@@ -252,8 +250,18 @@ elif page == "🧠 Explainability (LIME)":
     st.title("🧠 Explainable AI – LIME")
 
     if "last_input" not in st.session_state:
-        st.warning("Please perform a prediction first.")
+        st.warning("⚠️ Please perform a prediction first.")
     else:
+        # Add header with explanation
+        st.markdown("""
+        ---
+        ### 📊 Feature Impact Analysis
+        This visualization shows which patient features had the most influence on the AI model's prediction.
+        - **Orange highlighted features** → Pushed prediction towards PCOS
+        - **Blue features** → Pushed prediction away from PCOS
+        ---
+        """)
+        
         explanation = generate_lime_explanation(
             model,
             scaler.transform(
@@ -263,13 +271,30 @@ elif page == "🧠 Explainability (LIME)":
             st.session_state["last_input"][0]
         )
 
-        st.markdown('<div class="card">', unsafe_allow_html=True)
+        # Custom CSS to remove white background
+        st.markdown("""
+        <style>
+        iframe {
+            background: transparent !important;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+
         st.components.v1.html(
             explanation.as_html(),
-            height=520,
-            scrolling=True
+            height=400,
+            scrolling=False
         )
-        st.markdown('</div>', unsafe_allow_html=True)
+        
+        # Add interpretation guide
+        st.markdown("""
+        ---
+        ### 💡 How to Interpret
+        - Higher impact values = stronger influence on prediction
+        - Use with clinical judgment and other diagnostic methods
+        - This explains what the AI model "saw" in your data
+        """)
+
 
 # ============================================================
 # ABOUT PAGE
@@ -285,7 +310,6 @@ elif page == "ℹ️ About Project":
         width=1000
     )
 
-    st.markdown('<div class="card">', unsafe_allow_html=True)
     st.write("""
     **Project Title:**  
     PCOS Risk Analysis and Early Detection using Personalized Integrated AI  
@@ -308,6 +332,5 @@ elif page == "ℹ️ About Project":
     To assist clinicians and patients with transparent, interpretable,
     and real-time PCOS risk assessment.
     """)
-    st.markdown('</div>', unsafe_allow_html=True)
 
 
